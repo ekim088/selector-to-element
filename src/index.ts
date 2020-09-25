@@ -1,4 +1,4 @@
-import { makeNodeTree } from './utils';
+import makeNodeTree from './makeNodeTree';
 
 const selectorToElement = (selector: string) => {
 	const nodeTree = makeNodeTree(selector);
