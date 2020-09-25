@@ -4,12 +4,13 @@
 	"parserOptions": {
 		"project": "./tsconfig.eslint.json"
 	},
-	"plugins": ["@typescript-eslint", "import", "jest"],
+	"plugins": ["@typescript-eslint", "import", "jest", "jsdoc"],
 	"extends": [
 		"airbnb-base",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:jest/recommended",
 		"plugin:jest/style",
+		"plugin:jsdoc/recommended",
 		"prettier",
 		"prettier/@typescript-eslint"
 	],
@@ -46,7 +47,8 @@
 		"jest/no-duplicate-hooks": "error",
 		"jest/no-test-return-statement": "error",
 		"jest/prefer-hooks-on-top": "error",
-		"jest/require-top-level-describe": "error"
+		"jest/require-top-level-describe": "error",
+		"no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
 	},
 	"settings": {
 		"import/parsers": {
