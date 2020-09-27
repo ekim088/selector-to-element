@@ -1,5 +1,8 @@
-/src
+src/
+tests/
 .editorconfig
 .eslint*
+.github
 .prettierrc
 *.config.js
+*.code-workspace
