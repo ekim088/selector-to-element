@@ -2,8 +2,9 @@
 const siblingCombinators = ['~', '+'];
 
 /**
- * @ignore
- * @param {string} selector A CSS selector.
+ * Splits a selector into a list of selectors for each node.
+ *
+ * @param {string} selector A selector.
  * @returns {Array.<string>} An array with each element an array of sibling
  * node selectors.
  */
@@ -14,9 +15,9 @@ export const splitOnDescendants = (selector: string): string[] =>
 	selector.trim().split(/(?:\s+(?!\s*>))|(?:\s*>\s*)/g);
 
 /**
- * Transforms a CSS selector into a node tree represented by a 2D array.
+ * Transforms a selector into a node tree represented by a 2D array.
  *
- * @param {string} selector A CSS selector.
+ * @param {string} selector A selector.
  * @returns {Array.<Array.<string>>} A 2D array with each element containing a
  * 	list of sibling DOM nodes at that level of the tree.
  */

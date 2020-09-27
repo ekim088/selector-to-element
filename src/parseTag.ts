@@ -1,8 +1,8 @@
 /**
- * Parses a tag from a CSS selector. Only parses first node if selector contains
+ * Parses a tag from a selector. Only parses first node if selector contains
  * descendants. Returns `div` as default.
  *
- * @param {string} selector A CSS selector.
+ * @param {string} selector A selector.
  * @returns {string} A HTML tag name.
  */
 const parseTag = (selector: string): string => {

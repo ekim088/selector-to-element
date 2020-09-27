@@ -2,9 +2,9 @@ import makeNode from './makeNode';
 import makeNodeTree from './makeNodeTree';
 
 /**
- * Transforms a CSS selector into an HTML element.
+ * Transforms a selector into an HTML element.
  *
- * @param {string} selector A CSS selector.
+ * @param {string} selector A selector.
  * @returns {Element} A HTML Element representing the selector.
  */
 const selectorToElement = (selector: string): HTMLElement => {
@@ -28,7 +28,3 @@ const selectorToElement = (selector: string): HTMLElement => {
 };
 
 export default selectorToElement;
-export { default as parseAttributes } from './parseAttributes';
-export { default as parseClasses } from './parseClasses';
-export { default as parseId } from './parseId';
-export { default as parseTag } from './parseTag';

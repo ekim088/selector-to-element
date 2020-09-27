@@ -4,8 +4,9 @@ import parseId from './parseId';
 import parseTag from './parseTag';
 
 /**
- * @ignore
- * @param {string} selector A CSS selector containing a single node.
+ * Transforms a single node selector to an element.
+ *
+ * @param {string} selector A selector containing a single node.
  * @returns {Element} A HTML Element representing the selector.
  */
 const makeNode = (selector: string): HTMLElement => {

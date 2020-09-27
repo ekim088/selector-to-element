@@ -1,9 +1,9 @@
 /**
- * Parses an ID from a CSS selector. Returns the first ID found if passed
- * a selector containing multiple nodes. IDs with colons must double escape the
- * colon with `\\:`.
+ * Parses an ID from a selector. Returns the first ID found if passed a selector
+ * containing multiple nodes. IDs with colons must double escape the colon with
+ * `\\:`.
  *
- * @param {string} selector A CSS selector.
+ * @param {string} selector A selector.
  * @returns {string} The ID in a selector.
  */
 const parseId = (selector: string): string | null => {

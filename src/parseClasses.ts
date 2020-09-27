@@ -1,8 +1,8 @@
 /**
- * Parses a list of classes in a CSS selector. Classes with colons must double
- * escape the colon with `\\:`.
+ * Parses a list of classes in a selector. Classes with colons must double escape
+ * the colon with `\\:`.
  *
- * @param {string} selector A CSS selector.
+ * @param {string} selector A selector.
  * @returns {Array.<string>} A list of classes in the selector.
  */
 const parseClasses = (selector: string): string[] => {

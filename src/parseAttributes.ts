@@ -1,9 +1,9 @@
 /**
- * Parses attributes from a CSS selector.
+ * Parses attributes from a selector.
  *
- * @param {string} selector A CSS selector.
+ * @param {string} selector A selector.
  * @returns {Object.<string, string>} An dictionary of the attributes in the
- *	CSS selector.
+ *	selector.
  */
 const parseAttributes = (selector: string): { [name: string]: string } => {
 	const attributes: { [name: string]: string } = {};

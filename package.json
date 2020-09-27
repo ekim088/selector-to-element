@@ -1,6 +1,6 @@
 {
 	"name": "selector-to-element",
-	"description": "Convert a CSS selector into a matching DOM element.",
+	"description": "Transforms a selector into a matching HTML element.",
 	"version": "0.1.0",
 	"author": "ekim088 <edward@cyberbird.co>",
 	"bugs": {
