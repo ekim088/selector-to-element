@@ -1,17 +1,26 @@
+import parseAttributes from './parseAttributes';
+import parseClasses from './parseClasses';
+import parseId from './parseId';
+import parseTag from './parseTag';
+
 /**
- * Parses a list of classes in a CSS selector.
+ * Transforms a single node selector to an element.
  *
- * @param {string} selector A CSS selector.
- * @returns {Array.<string>} A list of classes in the selector.
+ * @param {string} selector A CSS selector containing a single node.
+ * @returns {Element} A HTML Element representing the selector.
  */
-export const parseClasses = (selector: string): string[] => {
-	const matches = selector.match(/\.([\w-_]+)/g);
+const makeNode = (selector: string): Element => {
+	const el = document.createElement(parseTag(selector));
+	const attributes = parseAttributes(selector);
+	const id = parseId(selector);
+	const classes = parseClasses(selector);
 
-	// remove `.` character from matches if found
-	return matches ? matches.map(match => match.substring(1)) : [];
+	if (id) el.id = id;
+	if (classes.length > 0) el.className = classes.join(' ');
+	Object.entries(attributes).forEach(([name, value]: [string, string]) => {
+		el.setAttribute(name, value);
+	});
+	return el;
 };
-
-// WIP
-const makeNode = (selector: string): Element => document.createElement('div');
 
 export default makeNode;

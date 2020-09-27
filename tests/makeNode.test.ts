@@ -1,38 +1,34 @@
-import { parseClasses } from '../src/makeNode';
+import makeNode from '../src/makeNode';
 
 describe('makeNode', () => {
-	describe('parseClasses', () => {
-		it('should return a list of classes in a selector', () => {
-			expect(parseClasses('.a.b.c')).toEqual(['a', 'b', 'c']);
-			expect(parseClasses('.alpha.beta')).toEqual(['alpha', 'beta']);
-			expect(parseClasses('.with-hyphen.a')).toEqual([
-				'with-hyphen',
-				'a'
-			]);
-			expect(parseClasses('.a.b.c p.d.e .f')).toEqual([
-				'a',
-				'b',
-				'c',
-				'd',
-				'e',
-				'f'
-			]);
-		});
+	it('should make a node with the correct tag', () => {
+		const selector = 'span';
+		expect(makeNode(selector).matches(selector)).toBeTruthy();
+	});
 
-		it('should parse a class attached to a tag', () => {
-			expect(parseClasses('div.a.b')).toEqual(['a', 'b']);
-		});
+	it('should make a node with the correct ID', () => {
+		const selector = '#myId';
+		expect(makeNode(selector).matches(selector)).toBeTruthy();
+	});
 
-		it('should parse a class attached to an ID', () => {
-			expect(parseClasses('#myId.a.b')).toEqual(['a', 'b']);
-			expect(parseClasses('.a#myId.b')).toEqual(['a', 'b']);
-			expect(parseClasses('.a.b#myId')).toEqual(['a', 'b']);
-		});
+	it('should make a node with the correct class', () => {
+		const selector = '.class1.class2';
+		expect(makeNode(selector).matches(selector)).toBeTruthy();
+	});
 
-		it('should parse a class attached to an attribute', () => {
-			expect(parseClasses('[someAttr].a.b')).toEqual(['a', 'b']);
-			expect(parseClasses('.a[someAttr].b')).toEqual(['a', 'b']);
-			expect(parseClasses('.a.b[someAttr]')).toEqual(['a', 'b']);
+	it('should make a node with the correct attribute', () => {
+		const selector = '[a=b][c=d]';
+		expect(makeNode(selector).matches(selector)).toBeTruthy();
+	});
+
+	it('should make a node matching the selector', () => {
+		const selectors = [
+			'a.b.c',
+			'article#a-1.art-1.art-2',
+			'span#test.fd[a="1"][b="2"][c]'
+		];
+		selectors.forEach(selector => {
+			expect(makeNode(selector).matches(selector)).toBeTruthy();
 		});
 	});
 });
