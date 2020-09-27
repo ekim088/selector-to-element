@@ -34,10 +34,8 @@
 		}
 	},
 	"keywords": [
-		"DOM",
 		"element",
-		"selector",
-		"test"
+		"selector"
 	],
 	"license": "MIT",
 	"lint-staged": {
@@ -50,17 +48,18 @@
 			"prettier --write"
 		]
 	},
-	"main": "index.js",
+	"main": "./lib/index.js",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/ekim088/selector-to-element.git"
 	},
 	"scripts": {
-		"build": "tsc",
+		"build": "rm -rf ./lib && tsc",
 		"lint": "eslint . --ext .js,.ts --fix",
 		"test": "jest",
 		"test:coverage": "jest --collectCoverage",
 		"test:pre-commit": "jest --findRelatedTests",
 		"test:watch": "jest --watchAll"
-	}
+	},
+	"types": "./lib/index.d.ts"
 }

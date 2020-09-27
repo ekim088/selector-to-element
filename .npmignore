@@ -1,0 +1,5 @@
+/src
+.editorconfig
+.eslint*
+.prettierrc
+*.config.js
