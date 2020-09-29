@@ -1,4 +1,4 @@
-import parseAttributes from '../src/parseAttributes';
+import parseAttributes from '../parseAttributes';
 
 describe('parseAttributes', () => {
 	it('should parse attributes', () => {

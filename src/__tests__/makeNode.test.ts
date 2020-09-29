@@ -1,4 +1,4 @@
-import makeNode from '../src/makeNode';
+import makeNode from '../makeNode';
 
 describe('makeNode', () => {
 	it('should make a node with the correct tag', () => {

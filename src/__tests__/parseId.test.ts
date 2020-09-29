@@ -1,4 +1,4 @@
-import parseId from '../src/parseId';
+import parseId from '../parseId';
 
 describe('parseId', () => {
 	it('should parse an ID', () => {

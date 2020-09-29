@@ -1,4 +1,4 @@
-import parseClasses from '../src/parseClasses';
+import parseClasses from '../parseClasses';
 
 describe('parseClasses', () => {
 	it('should parse a list of classes', () => {

@@ -1,4 +1,4 @@
-import makeNodeTree, { splitOnDescendants } from '../src/makeNodeTree';
+import makeNodeTree, { splitOnDescendants } from '../makeNodeTree';
 
 describe('makeNodeTree', () => {
 	it('should return a node tree as 2D array', () => {

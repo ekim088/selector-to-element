@@ -1,4 +1,4 @@
-import selectorToElement from '../src';
+import selectorToElement from '..';
 
 describe('selectorToElement', () => {
 	it('should make an HTML element matching the selector', () => {

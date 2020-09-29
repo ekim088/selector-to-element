@@ -1,4 +1,4 @@
-import parseTag from '../src/parseTag';
+import parseTag from '../parseTag';
 
 describe('parseTag', () => {
 	it('should parse a tag name', () => {
