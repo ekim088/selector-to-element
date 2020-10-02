@@ -11,4 +11,16 @@ const parsePseudoClasses = (selector: string): string[] => {
 	return matches ? matches.map(match => match.substring(1)) : [];
 };
 
+/**
+ * Parses a value within a pseudo class.
+ *
+ * @param {string} selector A selector.
+ * @param pseudo
+ * @returns {string} A pseudo class value.
+ */
+export const parsePseudoValue = (pseudo: string): string => {
+	const match = pseudo.match(/\((.*?)\)/);
+	return match ? match[1] : '';
+};
+
 export default parsePseudoClasses;

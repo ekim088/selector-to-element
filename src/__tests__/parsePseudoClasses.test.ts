@@ -1,4 +1,4 @@
-import parsePseudoClasses from '../parsePseudoClasses';
+import parsePseudoClasses, { parsePseudoValue } from '../parsePseudoClasses';
 
 describe('parsePseudoClasses', () => {
 	const pseudoClasses = [
@@ -92,5 +92,20 @@ describe('parsePseudoClasses', () => {
 			'nth-of-type(4n + 1)',
 			'active'
 		]);
+	});
+
+	describe('parsePseudoValue', () => {
+		it('should parse the value within a pseudo class', () => {
+			expect(parsePseudoValue(':not(p a)')).toEqual('p a');
+			expect(parsePseudoValue(':not(div #a.b.c + #d)')).toEqual(
+				'div #a.b.c + #d'
+			);
+			expect(parsePseudoValue(':nth-of-type(2n + 1)')).toEqual('2n + 1');
+		});
+
+		it('should return an empty string if no value', () => {
+			expect(parsePseudoValue(':not()')).toEqual('');
+			expect(parsePseudoValue(':first-child')).toEqual('');
+		});
 	});
 });
