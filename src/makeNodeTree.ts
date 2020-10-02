@@ -5,6 +5,18 @@ import parseTag from './parseTag';
 const siblingCombinators = ['~', '+'];
 
 /**
+ * Returns the number of siblings to place before current node given an
+ * :nth-child() parameter value.
+ *
+ * @param {string} nthParam An :nth-child() parameter value.
+ * @returns {number} The number of siblings to make.
+ */
+export const getNumberOfNthSiblingsToMake = (nthParam: string) => {
+	const nthParamNum = parseInt(nthParam, 10);
+	return nthParamNum ? nthParamNum - 1 : 0;
+};
+
+/**
  * Splits a selector into a list of selectors for each node.
  *
  * @param {string} selector A selector.
@@ -56,21 +68,19 @@ const makeNodeTree = (selector: string): string[][] => {
 			);
 			const nthChildParam =
 				pseudoNthChild && parsePseudoParam(pseudoNthChild);
-			const nthChildNum = nthChildParam && parseInt(nthChildParam, 10);
+			const numberOfSiblings =
+				nthChildParam && getNumberOfNthSiblingsToMake(nthChildParam);
 
-			if (nthChildNum && nthChildNum > 1) {
-				// push n-1 number of siblings before pushing current selector
+			// push siblings before pushing current selector
+			if (numberOfSiblings) {
 				const baseTag = parseTag(currentSelector);
 
-				for (let j = 0; j < nthChildNum; j++) {
-					siblings.push(
-						j === nthChildNum - 1 ? currentSelector : baseTag
-					);
+				for (let j = 0; j < numberOfSiblings; j++) {
+					siblings.push(baseTag);
 				}
-			} else {
-				siblings.push(currentSelector);
 			}
 
+			siblings.push(currentSelector);
 			isSibling = false;
 		} else {
 			isSibling = true;
