@@ -1,4 +1,4 @@
-import parsePseudoClasses, { parsePseudoValue } from '../parsePseudoClasses';
+import parsePseudoClasses, { parsePseudoParam } from '../parsePseudoClasses';
 
 describe('parsePseudoClasses', () => {
 	const pseudoClasses = [
@@ -94,18 +94,18 @@ describe('parsePseudoClasses', () => {
 		]);
 	});
 
-	describe('parsePseudoValue', () => {
-		it('should parse the value within a pseudo class', () => {
-			expect(parsePseudoValue(':not(p a)')).toEqual('p a');
-			expect(parsePseudoValue(':not(div #a.b.c + #d)')).toEqual(
+	describe('parsePseudoParam', () => {
+		it('should parse the param value within a pseudo class', () => {
+			expect(parsePseudoParam(':not(p a)')).toEqual('p a');
+			expect(parsePseudoParam(':not(div #a.b.c + #d)')).toEqual(
 				'div #a.b.c + #d'
 			);
-			expect(parsePseudoValue(':nth-of-type(2n + 1)')).toEqual('2n + 1');
+			expect(parsePseudoParam(':nth-of-type(2n + 1)')).toEqual('2n + 1');
 		});
 
-		it('should return an empty string if no value', () => {
-			expect(parsePseudoValue(':not()')).toEqual('');
-			expect(parsePseudoValue(':first-child')).toEqual('');
+		it('should return an empty string if no param value', () => {
+			expect(parsePseudoParam(':not()')).toEqual('');
+			expect(parsePseudoParam(':first-child')).toEqual('');
 		});
 	});
 });

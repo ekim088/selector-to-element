@@ -1,4 +1,4 @@
-import makeNode from '../makeNode';
+import { makeNode } from '../selectorToElement';
 
 describe('makeNode', () => {
 	it('should make a node with the correct tag', () => {
@@ -30,5 +30,11 @@ describe('makeNode', () => {
 		selectors.forEach(selector => {
 			expect(makeNode(selector).matches(selector)).toBeTruthy();
 		});
+	});
+
+	it('should support the :has pseudo class', () => {
+		const el = makeNode('span:has(a .b.c)');
+		expect(el.tagName).toEqual('SPAN');
+		expect(el.querySelector('a .b.c')).not.toBeNull();
 	});
 });

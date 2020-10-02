@@ -12,13 +12,12 @@ const parsePseudoClasses = (selector: string): string[] => {
 };
 
 /**
- * Parses a value within a pseudo class.
+ * Parses a parameter value within a pseudo class.
  *
- * @param {string} selector A selector.
- * @param pseudo
- * @returns {string} A pseudo class value.
+ * @param {string} pseudo A pseudo class containing a param value.
+ * @returns {string} A pseudo class param value.
  */
-export const parsePseudoValue = (pseudo: string): string => {
+export const parsePseudoParam = (pseudo: string): string => {
 	const match = pseudo.match(/\((.*?)\)/);
 	return match ? match[1] : '';
 };

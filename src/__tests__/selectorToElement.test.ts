@@ -1,4 +1,4 @@
-import selectorToElement from '..';
+import selectorToElement from '../selectorToElement';
 
 describe('selectorToElement', () => {
 	it('should make an HTML element matching the selector', () => {
@@ -21,5 +21,17 @@ describe('selectorToElement', () => {
 		const selector = 'div + span .a[b=c] ul.list';
 		selectorToElement(selector, rootEl);
 		expect(rootEl.querySelector(selector)).not.toBeNull();
+	});
+
+	it('should support the :has pseudo class', () => {
+		const selector =
+			'div + span .a[b=c] .test:has(div ul.list li[data-item="testing"]) button';
+		const el = selectorToElement(selector);
+		expect(el.tagName).toEqual('BUTTON');
+
+		const hasEl = el.closest('.test');
+		expect(
+			hasEl!.querySelector('div ul.list li[data-item="testing"]')
+		).not.toBeNull();
 	});
 });
