@@ -26,6 +26,29 @@ describe('makeNodeTree', () => {
 		]);
 	});
 
+	it('should support the :nth-child() pseudo class with an integer value', () => {
+		expect(makeNodeTree('div span:nth-child(2)')).toEqual([
+			['div'],
+			['span', 'span:nth-child(2)']
+		]);
+		expect(makeNodeTree('div .a.b:nth-child(3)')).toEqual([
+			['div'],
+			['div', 'div', '.a.b:nth-child(3)']
+		]);
+		expect(makeNodeTree('div span:nth-child(-1)')).toEqual([
+			['div'],
+			['span:nth-child(-1)']
+		]);
+		expect(makeNodeTree('div span:nth-child(0)')).toEqual([
+			['div'],
+			['span:nth-child(0)']
+		]);
+		expect(makeNodeTree('div span:nth-child(1)')).toEqual([
+			['div'],
+			['span:nth-child(1)']
+		]);
+	});
+
 	describe('splitOnDescendants', () => {
 		it('should split on descendent and child combinators', () => {
 			expect(splitOnDescendants('div .a')).toEqual(['div', '.a']);

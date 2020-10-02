@@ -9,7 +9,8 @@ describe('selectorToElement', () => {
 			'div + span',
 			'div ~ span',
 			'.test a + #myId.class1 ul.test',
-			'article#myId a.linkClass[target="_blank"] img'
+			'article#myId a.linkClass[target="_blank"] img',
+			'div .a:nth-child(6)'
 		];
 		selectors.forEach(selector => {
 			expect(selectorToElement(selector).matches(selector)).toBeTruthy();

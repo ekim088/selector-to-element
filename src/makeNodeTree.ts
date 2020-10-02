@@ -1,3 +1,6 @@
+import parsePseudoClasses, { parsePseudoParam } from './parsePseudoClasses';
+import parseTag from './parseTag';
+
 // combinators denoting a sibling node
 const siblingCombinators = ['~', '+'];
 
@@ -35,8 +38,10 @@ const makeNodeTree = (selector: string): string[][] => {
 	let isSibling = false;
 
 	for (let i = 0; i < splitSelector.length; i++) {
+		const currentSelector = splitSelector[i];
+
 		// push current element as node if not a sibling combinator
-		if (siblingCombinators.indexOf(splitSelector[i]) === -1) {
+		if (siblingCombinators.indexOf(currentSelector) === -1) {
 			// if current element is not a sibling node, push previous set of
 			// of nodes as parent level in tree
 			if (!isSibling && siblings.length > 0) {
@@ -44,7 +49,28 @@ const makeNodeTree = (selector: string): string[][] => {
 				siblings = [];
 			}
 
-			siblings.push(splitSelector[i]);
+			// determine if selector has :nth-child pseudo-class
+			const pseudoClasses = parsePseudoClasses(currentSelector);
+			const pseudoNthChild = pseudoClasses.find(
+				pseudo => pseudo.indexOf('nth-child') === 0
+			);
+			const nthChildParam =
+				pseudoNthChild && parsePseudoParam(pseudoNthChild);
+			const nthChildNum = nthChildParam && parseInt(nthChildParam, 10);
+
+			if (nthChildNum && nthChildNum > 1) {
+				// push n-1 number of siblings before pushing current selector
+				const baseTag = parseTag(currentSelector);
+
+				for (let j = 0; j < nthChildNum; j++) {
+					siblings.push(
+						j === nthChildNum - 1 ? currentSelector : baseTag
+					);
+				}
+			} else {
+				siblings.push(currentSelector);
+			}
+
 			isSibling = false;
 		} else {
 			isSibling = true;
