@@ -1,7 +1,7 @@
 {
 	"name": "selector-to-element",
 	"description": "Transforms a selector into a matching HTML element.",
-	"version": "0.1.0",
+	"version": "0.1.1-alpha",
 	"author": "ekim088 <edward@cyberbird.co>",
 	"bugs": {
 		"url": "https://github.com/ekim088/selector-to-element/issues"
