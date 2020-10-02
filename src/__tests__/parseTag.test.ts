@@ -7,6 +7,8 @@ describe('parseTag', () => {
 
 	it('should return div if a tag cannot be parsed', () => {
 		expect(parseTag('.noTag')).toEqual('div');
+		expect(parseTag('*.noTag')).toEqual('div');
+		expect(parseTag('*')).toEqual('div');
 	});
 
 	it('should parse the first node if selector contains descendants', () => {

@@ -8,7 +8,8 @@ describe('selectorToElement', () => {
 			'ol.a li.b.c#test div a article#art1.test[data-test="testing"]',
 			'div + span',
 			'div ~ span',
-			'.test a + #myId.class1 ul.test'
+			'.test a + #myId.class1 ul.test',
+			'article#myId a.linkClass[target="_blank"] img'
 		];
 		selectors.forEach(selector => {
 			expect(selectorToElement(selector).matches(selector)).toBeTruthy();
