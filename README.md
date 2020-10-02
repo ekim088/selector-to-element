@@ -19,3 +19,10 @@ import selectorToElement from 'selector-to-element';
 
 const imgEl = selectorToElement('article#myId a.linkClass[target="_blank"] img');
 ```
+
+### Params
+
+| Param         | Type      | Description                                                                                               |
+| ------------- | --------- | --------------------------------------------------------------------------------------------------------- |
+| selector      | `string`  | A selector.                                                                                               |
+| _rootElement_ | `Element` | _(Optional)_ A root element to contain the DOM branch specified by the selector. Defaults to a new `div`. |

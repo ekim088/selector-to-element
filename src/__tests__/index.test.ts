@@ -15,4 +15,11 @@ describe('selectorToElement', () => {
 			expect(selectorToElement(selector).matches(selector)).toBeTruthy();
 		});
 	});
+
+	it('should append branch to a specified root', () => {
+		const rootEl = document.createElement('span');
+		const selector = 'div + span .a[b=c] ul.list';
+		selectorToElement(selector, rootEl);
+		expect(rootEl.querySelector(selector)).not.toBeNull();
+	});
 });

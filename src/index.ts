@@ -5,10 +5,15 @@ import makeNodeTree from './makeNodeTree';
  * Transforms a selector into an HTML element.
  *
  * @param {string} selector A selector.
+ * @param {Element} [rootElement] A root element to contain the DOM branch
+ * 	specified by the selector. Defaults to a new `div`.
  * @returns {Element} A HTML Element representing the selector.
  */
-const selectorToElement = (selector: string): HTMLElement => {
-	let el: HTMLElement = document.createElement('div');
+const selectorToElement = (
+	selector: string,
+	rootElement?: HTMLElement
+): HTMLElement => {
+	let el: HTMLElement = rootElement || document.createElement('div');
 	const nodeTree = makeNodeTree(selector);
 
 	// traverse each level of the node tree and set deeper nodes as children of
