@@ -10,7 +10,9 @@ describe('selectorToElement', () => {
 			'div ~ span',
 			'.test a + #myId.class1 ul.test',
 			'article#myId a.linkClass[target="_blank"] img',
-			'div .a:nth-child(6)'
+			'div .a:nth-child(6)',
+			'div [a=b] #c:nth-child(5n + 2)',
+			'a#t+article.r img.cl2na span[a="b"]~aside>table'
 		];
 		selectors.forEach(selector => {
 			expect(selectorToElement(selector).matches(selector)).toBeTruthy();
@@ -32,7 +34,7 @@ describe('selectorToElement', () => {
 
 		const hasEl = el.closest('.test');
 		expect(
-			hasEl!.querySelector('div ul.list li[data-item="testing"]')
+			hasEl && hasEl.querySelector('div ul.list li[data-item="testing"]')
 		).not.toBeNull();
 	});
 });

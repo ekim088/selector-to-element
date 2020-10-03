@@ -92,6 +92,12 @@ describe('parsePseudoClasses', () => {
 			'nth-of-type(4n + 1)',
 			'active'
 		]);
+		expect(parsePseudoClasses('span:nth-child(5n + 2)')).toEqual([
+			'nth-child(5n + 2)'
+		]);
+		expect(
+			parsePseudoClasses('.test:has(div ul.list li[data-item="testing"])')
+		).toEqual(['has(div ul.list li[data-item="testing"])']);
 	});
 
 	describe('parsePseudoParam', () => {
@@ -101,6 +107,10 @@ describe('parsePseudoClasses', () => {
 				'div #a.b.c + #d'
 			);
 			expect(parsePseudoParam(':nth-of-type(2n + 1)')).toEqual('2n + 1');
+			expect(parsePseudoParam(':nth-child(5n + 2)')).toEqual('5n + 2');
+			expect(
+				parsePseudoParam(':has(div ul.list li[data-item="testing"])')
+			).toEqual('div ul.list li[data-item="testing"]');
 		});
 
 		it('should return an empty string if no param value', () => {

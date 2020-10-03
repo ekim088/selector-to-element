@@ -1,9 +1,6 @@
 import parsePseudoClasses, { parsePseudoParam } from './parsePseudoClasses';
 import parseTag from './parseTag';
 
-// combinators denoting a sibling node
-const siblingCombinators = ['~', '+'];
-
 /**
  * Returns the number of siblings to place before current node given an
  * :nth-child() parameter value.
@@ -11,10 +8,20 @@ const siblingCombinators = ['~', '+'];
  * @param {string} nthParam An :nth-child() parameter value.
  * @returns {number} The number of siblings to make.
  */
-export const getNumberOfNthSiblingsToMake = (nthParam: string) => {
-	const nthParamNum = parseInt(nthParam, 10);
-	return nthParamNum ? nthParamNum - 1 : 0;
+export const getNumNthSiblings = (nthParam: string): number => {
+	// split on + for functional param values i.e. 3n + 1; can base number of
+	// siblings to add solely on second number if exists
+	const parts = nthParam.split('+');
+	const partNum = parts[1] || parts[0];
+	const n = parseInt(partNum, 10);
+	return n > 1 ? n - 1 : 0;
 };
+
+// combinators denoting a sibling node
+const siblingCombinators = ['~', '+'];
+
+// regex to capture sibling combinators
+const siblingCombinatorRegex = /~|\+/g;
 
 /**
  * Splits a selector into a list of selectors for each node.
@@ -23,11 +30,30 @@ export const getNumberOfNthSiblingsToMake = (nthParam: string) => {
  * @returns {Array.<string>} An array with each element an array of sibling
  * node selectors.
  */
-export const splitOnDescendants = (selector: string): string[] =>
+export const splitOnNodes = (selector: string): string[] => {
+	// insert whitespace around adjacent sibling combinators to handle instances
+	// where they are not surrounded by whitespace i.e. div+p => div + p
+	let formattedSelector = selector.replace(
+		siblingCombinatorRegex,
+		match => ` ${match} `
+	);
+
+	// replace whitespace in between parentheses (pseudo class param values) so
+	// it is not treated like a descendant
+	formattedSelector = formattedSelector.replace(/\s+(?=[^()]*\))/g, '||');
+
 	// use non-capturing groups `?:` to omit conditional group from results
 	// (?:\s+(?!\s*>)) - capture 1+ whitespace not followed by `>`
 	// (?:\s*>\s*) - capture `>` surrounded by any number of whitespace
-	selector.trim().split(/(?:\s+(?!\s*>))|(?:\s*>\s*)/g);
+	const nodes = formattedSelector
+		.trim()
+		.split(/(?:\s+(?!\s*>))|(?:\s*>\s*)/g);
+
+	// revert replacement of whitespace within parenthesis
+	const nodeSelectors = nodes.map(node => node.replace(/\|\|/g, ' '));
+
+	return nodeSelectors;
+};
 
 /**
  * Transforms a selector into a node tree represented by a 2D array.
@@ -41,7 +67,7 @@ const makeNodeTree = (selector: string): string[][] => {
 	const tree: string[][] = [];
 
 	// split on combinators denoting a descendant node
-	const splitSelector = splitOnDescendants(selector);
+	const splitSelector = splitOnNodes(selector);
 
 	// sibling nodes at current level
 	let siblings: string[] = [];
@@ -69,7 +95,7 @@ const makeNodeTree = (selector: string): string[][] => {
 			const nthChildParam =
 				pseudoNthChild && parsePseudoParam(pseudoNthChild);
 			const numberOfSiblings =
-				nthChildParam && getNumberOfNthSiblingsToMake(nthChildParam);
+				nthChildParam && getNumNthSiblings(nthChildParam);
 
 			// push siblings before pushing current selector
 			if (numberOfSiblings) {
