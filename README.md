@@ -12,7 +12,7 @@ npm install selector-to-element
 
 ## Usage
 
-Quickly mock a specific DOM branch to assist in unit testing. Helpful for testing tracking events that rely on an element's surrounding elements. Supports type, ID, class, attribute, and sibling selectors. The following pseudo classes are supported: `:has`. The final node in the selector will be returned. Nodes without a specified type will default to `div`.
+Quickly mock a specific DOM branch to assist in unit testing. Helpful for testing tracking events that rely on an element's surrounding elements. Supports type, ID, class, attribute, and sibling selectors. The following pseudo classes are supported: `:has`, `:nth-child`, `:nth-of-type`. The final node in the selector will be returned. Nodes without a specified type will default to `div`.
 
 ```
 import selectorToElement from 'selector-to-element';

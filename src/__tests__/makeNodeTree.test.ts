@@ -66,6 +66,17 @@ describe('makeNodeTree', () => {
 		]);
 	});
 
+	it('should support the :nth-of-type() pseudo class', () => {
+		expect(makeNodeTree('div span:nth-of-type(5n)')).toEqual([
+			['div'],
+			['span', 'span', 'span', 'span', 'span:nth-of-type(5n)']
+		]);
+		expect(makeNodeTree('div span:nth-of-type(5n + 2)')).toEqual([
+			['div'],
+			['span', 'span:nth-of-type(5n + 2)']
+		]);
+	});
+
 	describe('splitOnNodes', () => {
 		it('should split on descendent and child combinators', () => {
 			expect(splitOnNodes('div .a')).toEqual(['div', '.a']);

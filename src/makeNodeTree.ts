@@ -3,9 +3,9 @@ import parseTag from './parseTag';
 
 /**
  * Returns the number of siblings to place before current node given an
- * :nth-child() parameter value.
+ * :nth-*() parameter value.
  *
- * @param {string} nthParam An :nth-child() parameter value.
+ * @param {string} nthParam A supported :nth-*() parameter value.
  * @returns {number} The number of siblings to make.
  */
 export const getNumNthSiblings = (nthParam: string): number => {
@@ -87,10 +87,10 @@ const makeNodeTree = (selector: string): string[][] => {
 				siblings = [];
 			}
 
-			// determine if selector has :nth-child pseudo-class
+			// determine if selector has :nth-* pseudo-class
 			const pseudoClasses = parsePseudoClasses(currentSelector);
-			const pseudoNthChild = pseudoClasses.find(
-				pseudo => pseudo.indexOf('nth-child') === 0
+			const pseudoNthChild = pseudoClasses.find(pseudo =>
+				/^nth-(child|of)/.test(pseudo)
 			);
 			const nthChildParam =
 				pseudoNthChild && parsePseudoParam(pseudoNthChild);
