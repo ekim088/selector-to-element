@@ -1,0 +1,218 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`selectorToElement should append ".test a + #myId.class1 ul.test" to the root element 1`] = `
+<div
+  id="root"
+>
+  <div
+    class="test"
+  >
+    <a />
+    <div
+      class="class1"
+      id="myId"
+    >
+      <ul
+        class="test"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`selectorToElement should append "a .b .c" to the root element 1`] = `
+<div
+  id="root"
+>
+  <a>
+    <div
+      class="b"
+    >
+      <div
+        class="c"
+      />
+    </div>
+  </a>
+</div>
+`;
+
+exports[`selectorToElement should append "a#t+article.r img.cl2na span[a="b"]~aside>table" to the root element 1`] = `
+<div
+  id="root"
+>
+  <a
+    id="t"
+  />
+  <article
+    class="r"
+  >
+    <img
+      class="cl2na"
+    >
+      <span
+        a="b"
+      />
+      <aside>
+        <table />
+      </aside>
+    </img>
+  </article>
+</div>
+`;
+
+exports[`selectorToElement should append "article#myId a.linkClass[target="_blank"] img" to the root element 1`] = `
+<div
+  id="root"
+>
+  <article
+    id="myId"
+  >
+    <a
+      class="linkClass"
+      target="_blank"
+    >
+      <img />
+    </a>
+  </article>
+</div>
+`;
+
+exports[`selectorToElement should append "div + span" to the root element 1`] = `
+<div
+  id="root"
+>
+  <div />
+  <span />
+</div>
+`;
+
+exports[`selectorToElement should append "div .a:nth-child(6)" to the root element 1`] = `
+<div
+  id="root"
+>
+  <div>
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div
+      class="a"
+    />
+  </div>
+</div>
+`;
+
+exports[`selectorToElement should append "div .a[b=c] ul.list" to the root element 1`] = `
+<div
+  id="root"
+>
+  <div>
+    <div
+      b="c"
+      class="a"
+    >
+      <ul
+        class="list"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`selectorToElement should append "div [a=b] #c:nth-child(5n + 2)" to the root element 1`] = `
+<div
+  id="root"
+>
+  <div>
+    <div
+      a="b"
+    >
+      <div />
+      <div
+        id="c"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`selectorToElement should append "div ~ span" to the root element 1`] = `
+<div
+  id="root"
+>
+  <div />
+  <span />
+</div>
+`;
+
+exports[`selectorToElement should append "ol.a li.b.c#test div a article#art1.test[data-test="testing"]" to the root element 1`] = `
+<div
+  id="root"
+>
+  <ol
+    class="a"
+  >
+    <li
+      class="b c"
+      id="test"
+    >
+      <div>
+        <a>
+          <article
+            class="test"
+            data-test="testing"
+            id="art1"
+          />
+        </a>
+      </div>
+    </li>
+  </ol>
+</div>
+`;
+
+exports[`selectorToElement should append branch to a specified root 1`] = `
+<span>
+  <div />
+  <span>
+    <div
+      b="c"
+      class="a"
+    >
+      <ul
+        class="list"
+      />
+    </div>
+  </span>
+</span>
+`;
+
+exports[`selectorToElement should support the :has pseudo class 1`] = `
+<article>
+  <div />
+  <span>
+    <div
+      b="c"
+      class="a"
+    >
+      <div
+        class="test"
+        id="oi"
+      >
+        <div>
+          <ul
+            class="list"
+          >
+            <li
+              data-item="testing"
+            />
+          </ul>
+        </div>
+        <button
+          class="sa fsd"
+        />
+      </div>
+    </div>
+  </span>
+</article>
+`;

@@ -1,4 +1,7 @@
-import parsePseudoClasses, { parsePseudoParam } from '../parsePseudoClasses';
+import parsePseudoClasses, {
+	parsePseudoParam,
+	removePseudoClasses
+} from '../parsePseudoClasses';
 
 describe('parsePseudoClasses', () => {
 	const pseudoClasses = [
@@ -116,6 +119,20 @@ describe('parsePseudoClasses', () => {
 		it('should return an empty string if no param value', () => {
 			expect(parsePseudoParam(':not()')).toEqual('');
 			expect(parsePseudoParam(':first-child')).toEqual('');
+		});
+	});
+
+	describe('removePseudoClasses', () => {
+		it('should remove pseudo classes from a selector', () => {
+			expect(removePseudoClasses('span:last-child')).toEqual('span');
+			expect(removePseudoClasses('span:nth-child(5n + 2)')).toEqual(
+				'span'
+			);
+			expect(
+				removePseudoClasses(
+					'div span:nth-child(5n + 2) div:first-child'
+				)
+			).toEqual('div span div');
 		});
 	});
 });

@@ -2,7 +2,10 @@ import makeNodeTree from './makeNodeTree';
 import parseAttributes from './parseAttributes';
 import parseClasses from './parseClasses';
 import parseId from './parseId';
-import parsePseudoClasses, { parsePseudoParam } from './parsePseudoClasses';
+import parsePseudoClasses, {
+	parsePseudoParam,
+	removePseudoClasses
+} from './parsePseudoClasses';
 import parseTag from './parseTag';
 
 /**
@@ -12,10 +15,13 @@ import parseTag from './parseTag';
  * @returns {Element} A HTML Element representing the selector.
  */
 export const makeNode = (selector: string): HTMLElement => {
-	const el = document.createElement(parseTag(selector));
-	const attributes = parseAttributes(selector);
-	const id = parseId(selector);
-	const classes = parseClasses(selector);
+	// parse most attributes in selector with pseudo classes removed so
+	// pseudo class param contents like :has() are not captured
+	const selectorWithoutPseudos = removePseudoClasses(selector);
+	const el = document.createElement(parseTag(selectorWithoutPseudos));
+	const attributes = parseAttributes(selectorWithoutPseudos);
+	const id = parseId(selectorWithoutPseudos);
+	const classes = parseClasses(selectorWithoutPseudos);
 	const pseudoClasses = parsePseudoClasses(selector);
 	const pseudoHas = pseudoClasses.find(pseudo => pseudo.indexOf('has') === 0);
 
