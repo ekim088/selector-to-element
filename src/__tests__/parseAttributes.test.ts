@@ -21,6 +21,28 @@ describe('parseAttributes', () => {
 		});
 	});
 
+	it('should parse attributes with loosely matched values', () => {
+		expect(parseAttributes('[someAttr~="someValue"]')).toEqual({
+			someAttr: 'someValue'
+		});
+		expect(parseAttributes('[someAttr|="someValue"]')).toEqual({
+			someAttr: 'someValue'
+		});
+		expect(parseAttributes('[someAttr^="someValue"]')).toEqual({
+			someAttr: 'someValue'
+		});
+		expect(parseAttributes('[someAttr$="someValue"]')).toEqual({
+			someAttr: 'someValue'
+		});
+		expect(parseAttributes('[someAttr*="someValue"]')).toEqual({
+			someAttr: 'someValue'
+		});
+		expect(parseAttributes('div[c|=fd][d^=sdu]')).toEqual({
+			c: 'fd',
+			d: 'sdu'
+		});
+	});
+
 	it('should parse an attribute attached to a tag', () => {
 		expect(parseAttributes('div[a=b]')).toEqual({
 			a: 'b'

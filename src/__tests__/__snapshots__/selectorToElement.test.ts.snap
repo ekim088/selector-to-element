@@ -146,6 +146,25 @@ exports[`selectorToElement should append "div ~ span" to the root element 1`] = 
 </div>
 `;
 
+exports[`selectorToElement should append "div[a~="sdad"] div[b*=lsd] div[c|=fd][d^=sdu]" to the root element 1`] = `
+<div
+  id="root"
+>
+  <div
+    a="sdad"
+  >
+    <div
+      b="lsd"
+    >
+      <div
+        c="fd"
+        d="sdu"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`selectorToElement should append "ol.a li.b.c#test div a article#art1.test[data-test="testing"]" to the root element 1`] = `
 <div
   id="root"

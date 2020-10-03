@@ -11,7 +11,8 @@ describe('selectorToElement', () => {
 		'article#myId a.linkClass[target="_blank"] img',
 		'div .a:nth-child(6)',
 		'div [a=b] #c:nth-child(5n + 2)',
-		'a#t+article.r img.cl2na span[a="b"]~aside>table'
+		'a#t+article.r img.cl2na span[a="b"]~aside>table',
+		'div[a~="sdad"] div[b*=lsd] div[c|=fd][d^=sdu]'
 	];
 
 	it('should make an HTML element matching the selector', () => {

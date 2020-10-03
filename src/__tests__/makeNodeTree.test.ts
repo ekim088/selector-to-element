@@ -136,6 +136,12 @@ describe('makeNodeTree', () => {
 				'a'
 			]);
 		});
+
+		it('should support attributes with loosely matched values', () => {
+			expect(
+				splitOnNodes('div[a~="sdad"] div[b*=lsd] div[c|=fd][d^=sdu]')
+			).toEqual(['div[a~="sdad"]', 'div[b*=lsd]', 'div[c|=fd][d^=sdu]']);
+		});
 	});
 
 	describe('getNumNthSiblings', () => {

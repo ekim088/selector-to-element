@@ -21,7 +21,8 @@ export const getNumNthSiblings = (nthParam: string): number => {
 const siblingCombinators = ['~', '+'];
 
 // regex to capture sibling combinators
-const siblingCombinatorRegex = /~|\+/g;
+// capture ~ not followed by = to avoid capturing ~= attribute selector
+const siblingCombinatorRegex = /(~(?!=))|\+/g;
 
 /**
  * Splits a selector into a list of selectors for each node.
