@@ -86,6 +86,38 @@ exports[`selectorToElement should append "div + span" to the root element 1`] = 
 </div>
 `;
 
+exports[`selectorToElement should append "div .a:first-child .b" to the root element 1`] = `
+<div
+  id="root"
+>
+  <div>
+    <div
+      class="a"
+    >
+      <div
+        class="b"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`selectorToElement should append "div .a:last-child .b" to the root element 1`] = `
+<div
+  id="root"
+>
+  <div>
+    <div
+      class="a"
+    >
+      <div
+        class="b"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`selectorToElement should append "div .a:nth-child(6)" to the root element 1`] = `
 <div
   id="root"
@@ -162,6 +194,70 @@ exports[`selectorToElement should append "div[a~="sdad"] div[b*=lsd] div[c|=fd][
       />
     </div>
   </div>
+</div>
+`;
+
+exports[`selectorToElement should append "fieldset input:invalid" to the root element 1`] = `
+<div
+  id="root"
+>
+  <fieldset>
+    <input />
+  </fieldset>
+</div>
+`;
+
+exports[`selectorToElement should append "fieldset input:optional" to the root element 1`] = `
+<div
+  id="root"
+>
+  <fieldset>
+    <input />
+  </fieldset>
+</div>
+`;
+
+exports[`selectorToElement should append "fieldset input:required" to the root element 1`] = `
+<div
+  id="root"
+>
+  <fieldset>
+    <input
+      required=""
+    />
+  </fieldset>
+</div>
+`;
+
+exports[`selectorToElement should append "fieldset option:checked" to the root element 1`] = `
+<div
+  id="root"
+>
+  <fieldset>
+    <option />
+  </fieldset>
+</div>
+`;
+
+exports[`selectorToElement should append "fieldset select:disabled" to the root element 1`] = `
+<div
+  id="root"
+>
+  <fieldset>
+    <select
+      disabled=""
+    />
+  </fieldset>
+</div>
+`;
+
+exports[`selectorToElement should append "fieldset textarea:valid" to the root element 1`] = `
+<div
+  id="root"
+>
+  <fieldset>
+    <textarea />
+  </fieldset>
 </div>
 `;
 

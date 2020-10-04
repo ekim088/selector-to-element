@@ -1,7 +1,7 @@
 {
 	"name": "selector-to-element",
 	"description": "Transforms a selector into a matching HTML element.",
-	"version": "0.4.0",
+	"version": "0.5.0",
 	"author": "ekim088 <edward@cyberbird.co>",
 	"bugs": {
 		"url": "https://github.com/ekim088/selector-to-element/issues"
@@ -36,7 +36,10 @@
 	},
 	"keywords": [
 		"element",
-		"selector"
+		"dom",
+		"jsdom",
+		"selector",
+		"test"
 	],
 	"license": "MIT",
 	"lint-staged": {

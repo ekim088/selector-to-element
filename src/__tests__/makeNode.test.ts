@@ -37,4 +37,26 @@ describe('makeNode', () => {
 		expect(el.tagName).toEqual('SPAN');
 		expect(el.querySelector('a .b.c')).not.toBeNull();
 	});
+
+	it('should support input-based pseudo classes for selectors targeting inputs or an unknown type', () => {
+		let el = makeNode('input:checked');
+		expect((el as HTMLInputElement).checked).toBeTruthy();
+
+		el = makeNode('option:checked');
+		expect((el as HTMLInputElement).checked).toBeTruthy();
+
+		el = makeNode('*:checked');
+		expect(el.tagName).toEqual('INPUT');
+		expect((el as HTMLInputElement).checked).toBeTruthy();
+
+		el = makeNode(':checked');
+		expect(el.tagName).toEqual('INPUT');
+		expect((el as HTMLInputElement).checked).toBeTruthy();
+	});
+
+	it('should ignore input-based pseudo classes for selectors targeting non-inputs', () => {
+		const el = makeNode('div:checked');
+		expect(el.tagName).toEqual('DIV');
+		expect((el as HTMLInputElement).checked).toBeFalsy();
+	});
 });
